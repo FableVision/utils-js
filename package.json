@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "postpublish": "git push && git push --tags"
   },
   "repository": {
