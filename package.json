@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/fablevision/public-utils/utils.git"
+    "url": "https://github.com/FableVision/utils-js.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/fablevision/public-utils/utils/issues"
+    "url": "https://github.com/FableVision/utils-js/issues"
   },
-  "homepage": "https://gitlab.com/fablevision/public-utils/utils#readme",
+  "homepage": "https://github.com/FableVision/utils-js#readme",
   "devDependencies": {
     "typescript": "^4.5.0"
   }
