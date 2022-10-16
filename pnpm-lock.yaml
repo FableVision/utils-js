@@ -6,17 +6,17 @@ specifiers:
   typescript: ^4.5.0
 
 dependencies:
+  '@types/eases': 1.0.2
   eases: 1.0.8
 
 devDependencies:
-  '@types/eases': 1.0.2
   typescript: 4.6.2
 
 packages:
 
   /@types/eases/1.0.2:
     resolution: {integrity: sha512-XVMdH9hz0mwa3cOUIjAXuQWfF9+eGgEXpFwssWH/H2g1NZHs2QKYCNuf+rAjUvI7fF8Pq6rb5FrNo2RNxrPI+w==}
-    dev: true
+    dev: false
 
   /eases/1.0.8:
     resolution: {integrity: sha512-U8TwgFYPktV07tV9yxoIu9TIWsXHGOuDJNXlyihWEMnGMXaoh2kkfWf0N1itbCjHWrgs+/leubuG7m+OgkfA0Q==}
