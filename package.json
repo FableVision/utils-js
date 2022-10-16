@@ -24,6 +24,10 @@
   },
   "homepage": "https://github.com/FableVision/utils-js#readme",
   "devDependencies": {
+    "@types/eases": "^1.0.0",
     "typescript": "^4.5.0"
+  },
+  "dependencies": {
+    "eases": "^1.0.8"
   }
 }
