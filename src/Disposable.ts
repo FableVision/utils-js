@@ -66,10 +66,12 @@ export class DisposableGroup extends Disposable
      */
     public add(...group: IDisposable[]): void
     {
-        if (this.group)
+        if (!this.group)
         {
-            this.group.push(...group);
+            this.group = [];
         }
+
+        this.group.push(...group);
     }
 
     public dispose()
