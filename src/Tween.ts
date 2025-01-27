@@ -98,10 +98,11 @@ export class Tween<T extends object> implements IDisposable
      * @param targetValues Properties corresponding end values to tween to.
      * @param totalTime Time in seconds to perform tweening.
      * @param ease Name of ease method to apply to interpolation.
+     * @param tick Function to call each update while this step is active.
      */
-    public to = (targetValues: TargetProps<T>, totalTime: number, ease: Ease = 'linear'): this =>
+    public to = (targetValues: TargetProps<T>, totalTime: number, ease: Ease = 'linear', tick?: (t:number)=>void): this =>
     {
-        this.steps.push({ targetValues, totalTime, ease: Eases[ease] });
+        this.steps.push({ targetValues, totalTime, ease: Eases[ease], tick });
         return this;
     };
 
@@ -194,6 +195,10 @@ export class Tween<T extends object> implements IDisposable
             }
         }
         step.currentTime += elapsed;
+        if (step.tick)
+        {
+            step.tick(step.currentTime);
+        }
         const time = step.currentTime / step.totalTime! > 1 ? 1 : step.currentTime / step.totalTime!;
         if (step.targetValues)
         {
@@ -239,6 +244,7 @@ export type TweenStep = {
     totalTime?: number;
     ease?: (t: number) => number;
     call?: () => void;
+    tick?: (t: number) => void;
 };
 
 export type TweenOptions = {
