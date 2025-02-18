@@ -40,3 +40,48 @@ export function shuffleCopy<T extends Array<any>>(arr: T): T
 {
     return shuffle(arr.slice() as T);
 }
+
+/**
+ * Moves the first element of the array to the end, moving all other elements up one position.
+ * This modifies the original array.
+ */
+export function rotateForward<T extends Array<any>>(arr: T): T
+{
+    const first = arr[0];
+    for (let i = 0; i < arr.length - 1; ++i)
+    {
+        arr[i] = arr[i + 1];
+    }
+    arr[arr.length - 1] = first;
+
+    return arr;
+}
+
+/**
+ * Moves the last element of the array to the front, moving all other elements back one position.
+ * This modifies the original array.
+ */
+export function rotateBackward<T extends Array<any>>(arr: T): T
+{
+    const last = arr[arr.length - 1];
+    for (let i = arr.length - 1; i > 0; --i)
+    {
+        arr[i] = arr[i - 1];
+    }
+    arr[0] = last;
+
+    return arr;
+}
+
+/**
+ * Gets a value from an array, looping the index if it is negative or past the array length.
+ */
+export function getLoopedValue<T>(arr: T[], index: number): T
+{
+    while (index < 0)
+        index += arr.length;
+    while (index >= arr.length)
+        index -= arr.length;
+
+    return arr[index];
+}
