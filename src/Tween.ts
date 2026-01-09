@@ -1,7 +1,7 @@
 // Borrowed from WGBH's springroll game library: https://github.com/WGBH/wgbh-springroll-game/blob/master/src/tween/Tween.ts
 import * as eases from 'eases';
 import { IDisposable } from './Disposable';
-import { globalTimer } from './Timer';
+import { globalTimer, Timer } from './Timer';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const Eases: typeof eases = (eases as any).default;
@@ -69,7 +69,7 @@ export class Tween<T extends object> implements IDisposable
             tween.onComplete = options.onComplete;
         }
         Tween.tweens.add(tween);
-        tween.timerListener = globalTimer.add(tween.update);
+        tween.timerListener = (options.timer || globalTimer).add(tween.update);
         return tween;
     }
 
@@ -248,9 +248,16 @@ export type TweenStep = {
 };
 
 export type TweenOptions = {
+    /**
+     * If this should replace any existing tween on the same object
+     */
     override?: boolean;
+    /** Number of times to loop, or true for infinite */
     loop?: number | true;
+    /** Callback for a complete tween. Use of promises/.call() are suggested instead. */
     onComplete?: () => void;
+    /** Override what timer to listen to - defaults to the global timer. */
+    timer?: Timer;
 };
 
 export type Ease = keyof typeof eases;
