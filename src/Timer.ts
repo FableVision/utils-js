@@ -8,6 +8,8 @@ export class Timer extends Event<number>
     private lastTime: number;
     private raf: number;
     private rafCB: () => void;
+    /** Multiplier to actual time elapsed to apply to the emitted time elapsed. */
+    public speed: number;
 
     constructor()
     {
@@ -15,6 +17,7 @@ export class Timer extends Event<number>
 
         this.lastTime = 0;
         this.raf = 0;
+        this.speed = 1;
         this.rafCB = () => {
             this.raf = requestAnimationFrame(this.rafCB);
             this.tick();
@@ -29,7 +32,14 @@ export class Timer extends Event<number>
         const now = performance.now() / 1000;
         const elapsed = now - this.lastTime;
         this.lastTime = now;
-        this.emit(elapsed);
+        this.emit(elapsed * this.speed);
+    }
+
+    /** Tick with a specific amount of time, instead of calculating actual time. */
+    public tickOverride(elapsedSeconds: number): void
+    {
+        this.lastTime = performance.now() / 1000;
+        this.emit(elapsedSeconds);
     }
 
     /**
